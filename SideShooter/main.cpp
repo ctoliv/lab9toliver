@@ -162,6 +162,23 @@ int main(void)
 
 			al_draw_textf(font, al_map_rgb(255, 255, 255), 10, 30, 0,
 				"Ghosts killed: %d", myPlayer.getScore());
+			// Draw Kirby health bar.
+			int barX = 10;
+			int barY = 55;
+			int barWidth = 150;
+			int barHeight = 15;
+			int maxLives = 5;
+
+			int currentLives = myPlayer.getLives();
+			int healthWidth = (barWidth * currentLives) / maxLives;
+
+			// Health bar outline.
+			al_draw_rectangle(barX, barY, barX + barWidth, barY + barHeight,
+				al_map_rgb(255, 255, 255), 2);
+
+			// Filled health amount.
+			al_draw_filled_rectangle(barX, barY, barX + healthWidth, barY + barHeight,
+				al_map_rgb(255, 0, 0));
 
 			al_flip_display();
 			al_clear_to_color(al_map_rgb(0,0,0));
