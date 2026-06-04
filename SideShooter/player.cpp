@@ -14,11 +14,11 @@ player::~player()
 player::player(int HEIGHT)
 {
 	// Load Kirby images for each life state.
-	image[0] = al_load_bitmap("kirby4.png"); // 5 lives, full health
-	image[1] = al_load_bitmap("kirby3.png"); // 4 lives
+	image[0] = al_load_bitmap("kirby4.png"); // 1 lives, lowest health
+	image[1] = al_load_bitmap("kirby3.png"); // 2 lives
 	image[2] = al_load_bitmap("kirby2.png"); // 3 lives
-	image[3] = al_load_bitmap("kirby1.png"); // 2 lives
-	image[4] = al_load_bitmap("kirby0.png"); // 1 life, lowest health
+	image[3] = al_load_bitmap("kirby1.png"); // 4 lives
+	image[4] = al_load_bitmap("kirby0.png"); // 5 life, full health
 
 	for (int i = 0; i < 5; i++)
 	{
