@@ -1,6 +1,7 @@
 #include <allegro5\allegro.h>
 #include <allegro5\allegro_primitives.h>
 #include <allegro5\allegro_image.h>
+#include <allegro5\allegro_font.h>
 #include "player.h"
 #include "ghost.h"
 #include "Arrow.h"
@@ -26,6 +27,7 @@ int main(void)
 	ALLEGRO_DISPLAY *display = NULL;
 	ALLEGRO_EVENT_QUEUE *event_queue = NULL;
 	ALLEGRO_TIMER *timer = NULL;
+	ALLEGRO_FONT* font = NULL;
 
 	//Initialization Functions
 	if(!al_init())										//initialize Allegro
@@ -38,6 +40,8 @@ int main(void)
 
 	al_install_keyboard();
 	al_init_image_addon();
+	al_init_font_addon();
+	font = al_create_builtin_font();
 
 	//object variables
 	player myPlayer(HEIGHT);
@@ -147,6 +151,13 @@ int main(void)
 			for(int i=0;i<NUM_ghostS;i++)
 				ghosts[i].Drawghost();
 
+			// Show Kirby status and ghost kills.
+			al_draw_textf(font, al_map_rgb(255, 255, 255), 10, 10, 0,
+				"Lives: %d", myPlayer.getLives());
+
+			al_draw_textf(font, al_map_rgb(255, 255, 255), 10, 30, 0,
+				"Ghosts killed: %d", myPlayer.getScore());
+
 			al_flip_display();
 			al_clear_to_color(al_map_rgb(0,0,0));
 		}
@@ -154,6 +165,7 @@ int main(void)
 
 	al_destroy_event_queue(event_queue);
 	al_destroy_timer(timer);
+	al_destroy_font(font);
 	al_destroy_display(display);						//destroy our display object
 	system("Pause");
 	return 0;
