@@ -14,11 +14,11 @@ player::~player()
 player::player(int HEIGHT)
 {
 	// Load Kirby images for each life state.
-	image[0] = al_load_bitmap("kirby0.png");
-	image[1] = al_load_bitmap("kirby1.png");
+	image[0] = al_load_bitmap("kirby4.png");
+	image[1] = al_load_bitmap("kirby3.png");
 	image[2] = al_load_bitmap("kirby2.png");
-	image[3] = al_load_bitmap("kirby3.png");
-	image[4] = al_load_bitmap("kirby4.png");
+	image[3] = al_load_bitmap("kirby1.png");
+	image[4] = al_load_bitmap("kirby0.png");
 	image[5] = al_load_bitmap("kirby.png");
 	x = 20;
 	y = HEIGHT / 2;
@@ -55,4 +55,11 @@ void player::MoveRight()
 	x += speed;
 	if(x > 300)
 		x = 300;
+}
+void player::removeLife()
+{
+	if (lives > 0)
+	{
+		lives--;
+	}
 }

@@ -17,7 +17,11 @@ public:
 	int getBoundY(){return boundy;}
 	int getX(){return x;}
 	int getY(){return y;}
-	void removeLife(){lives--;}
+	void removeLife();
+	int getLives() { return lives; }
+	void addScore() { score++; }
+	int getScore() { return score; }
+
 private:
 	int x;
 	int y;
