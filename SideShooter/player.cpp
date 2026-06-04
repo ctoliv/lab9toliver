@@ -6,7 +6,7 @@
 
 player::~player()
 {
-	for (int i = 0; i < 6; i++)
+	for (int i = 0; i < 5; i++)
 	{
 		al_destroy_bitmap(image[i]);
 	}
@@ -14,25 +14,34 @@ player::~player()
 player::player(int HEIGHT)
 {
 	// Load Kirby images for each life state.
-	image[0] = al_load_bitmap("kirby4.png");
-	image[1] = al_load_bitmap("kirby3.png");
-	image[2] = al_load_bitmap("kirby2.png");
-	image[3] = al_load_bitmap("kirby1.png");
-	image[4] = al_load_bitmap("kirby0.png");
-	image[5] = al_load_bitmap("kirby.png");
+	image[0] = al_load_bitmap("kirby4.png"); // 5 lives, full health
+	image[1] = al_load_bitmap("kirby3.png"); // 4 lives
+	image[2] = al_load_bitmap("kirby2.png"); // 3 lives
+	image[3] = al_load_bitmap("kirby1.png"); // 2 lives
+	image[4] = al_load_bitmap("kirby0.png"); // 1 life, lowest health
+
+	for (int i = 0; i < 5; i++)
+	{
+		if (!image[i])
+		{
+			exit(1);
+		}
+	}
 	x = 20;
 	y = HEIGHT / 2;
 	lives = 5;
 	speed = 7;
-	boundx = al_get_bitmap_width(image[5]);
-	boundy = al_get_bitmap_height(image[5]);
+	boundx = al_get_bitmap_width(image[4]);
+	boundy = al_get_bitmap_height(image[4]);
 	score = 0;
 }
 void player::DrawPlayer()
 {
-	al_draw_bitmap(image[lives], x, y, 0);
-}
-void player::MoveUp()
+	if (lives > 0)
+	{
+		al_draw_bitmap(image[lives - 1], x, y, 0);
+	}
+}void player::MoveUp()
 {
 	y -= speed;
 	if(y < 0)

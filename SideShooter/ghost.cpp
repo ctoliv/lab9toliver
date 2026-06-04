@@ -50,19 +50,29 @@ void ghost::Updateghost()
 	}
 
 }
-void ghost::Collideghost(player &Player)
+void ghost::Collideghost(player& Player)
 {
-	if(live)
+	if (live)
 	{
-		if( x - boundx < Player.getX() + Player.getBoundX() &&
-			x + boundx > Player.getX() - Player.getBoundX() &&
-			y - boundy < Player.getY() + Player.getBoundY() &&
-			y + boundy > Player.getY() - Player.getBoundY())
+		int ghostLeft = x + boundx / 4;
+		int ghostRight = x + boundx - boundx / 4;
+		int ghostTop = y + boundy / 4;
+		int ghostBottom = y + boundy - boundy / 4;
+
+		int playerLeft = Player.getX() + Player.getBoundX() / 4;
+		int playerRight = Player.getX() + Player.getBoundX() - Player.getBoundX() / 4;
+		int playerTop = Player.getY() + Player.getBoundY() / 4;
+		int playerBottom = Player.getY() + Player.getBoundY() - Player.getBoundY() / 4;
+
+		if (ghostLeft < playerRight &&
+			ghostRight > playerLeft &&
+			ghostTop < playerBottom &&
+			ghostBottom > playerTop)
 		{
 			Player.removeLife();
 			live = false;
 		}
-		else if(x < 0)
+		else if (x < 0)
 		{
 			live = false;
 		}

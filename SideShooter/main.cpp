@@ -85,6 +85,11 @@ int main(void)
 				Arrows[i].CollideArrow(ghosts, NUM_ghostS, myPlayer);
 			for(int i=0;i<NUM_ghostS;i++)
 				ghosts[i].Collideghost(myPlayer);
+			// End the game when Kirby runs out of lives.
+				if (myPlayer.getLives() <= 0)
+			{
+				done = true;
+			}
 		}
 		else if(ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE)
 		{
@@ -162,7 +167,21 @@ int main(void)
 			al_clear_to_color(al_map_rgb(0,0,0));
 		}
 	}
+	al_clear_to_color(al_map_rgb(0, 0, 0));
 
+	al_draw_text(font, al_map_rgb(255, 255, 255), WIDTH / 2, HEIGHT / 2 - 40,
+		ALLEGRO_ALIGN_CENTER, "Game Over");
+
+	al_draw_textf(font, al_map_rgb(255, 255, 255), WIDTH / 2, HEIGHT / 2,
+		ALLEGRO_ALIGN_CENTER, "Final ghosts killed: %d", myPlayer.getScore());
+
+	al_draw_textf(font, al_map_rgb(255, 255, 255), WIDTH / 2, HEIGHT / 2 + 40,
+		ALLEGRO_ALIGN_CENTER, "Final lives: %d", myPlayer.getLives());
+
+	al_flip_display();
+
+	// Rest the screen for at least 5 seconds before closing.
+	al_rest(5.0);
 	al_destroy_event_queue(event_queue);
 	al_destroy_timer(timer);
 	al_destroy_font(font);
