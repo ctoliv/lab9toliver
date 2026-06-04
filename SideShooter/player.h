@@ -1,5 +1,8 @@
 #ifndef PLAYERH
 #define PLAYERH
+#include <allegro5\allegro.h>
+#include <allegro5\allegro_image.h>
+
 class player
 {
 public:
@@ -23,6 +26,6 @@ private:
 	int boundx;
 	int boundy;
 	int score;
-	ALLEGRO_BITMAP *image;
+	ALLEGRO_BITMAP *image[6];
 };
 #endif

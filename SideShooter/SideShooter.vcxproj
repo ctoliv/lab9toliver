@@ -102,6 +102,13 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\..\..\Downloads\kirby0.png" />
+    <Image Include="..\..\..\..\Downloads\kirby1.png" />
+    <Image Include="..\..\..\..\Downloads\kirby2.png" />
+    <Image Include="..\..\..\..\Downloads\kirby3.png" />
+    <Image Include="..\..\..\..\Downloads\kirby4.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
     <Import Project="..\packages\AllegroDeps.1.16.0\build\native\AllegroDeps.targets" Condition="Exists('..\packages\AllegroDeps.1.16.0\build\native\AllegroDeps.targets')" />
