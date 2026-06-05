@@ -5,6 +5,8 @@
 
 ghost::ghost()
 {
+	x = 0;
+	y = 0;
 	image = al_load_bitmap("ghost.png");
 	live = false;
 	speed = 5;

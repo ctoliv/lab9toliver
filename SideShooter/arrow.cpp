@@ -5,6 +5,8 @@
 
 Arrow::Arrow()
 {
+	x = 0;
+	y = 0;
 	speed = 10;
 	live = false;
 	image = al_load_bitmap("arrow.png");
